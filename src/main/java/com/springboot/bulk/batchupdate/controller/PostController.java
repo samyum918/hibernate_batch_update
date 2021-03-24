@@ -1,5 +1,7 @@
 package com.springboot.bulk.batchupdate.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.springboot.bulk.batchupdate.dto.PostDto;
 import com.springboot.bulk.batchupdate.model.Post;
 import com.springboot.bulk.batchupdate.model.PostLike;
@@ -16,6 +18,9 @@ import javax.transaction.Transactional;
 public class PostController {
     @Autowired
     EntityManager em;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Autowired
     PostRepository postRepository;
@@ -43,5 +48,15 @@ public class PostController {
         post.setContent(postDto.getContent());
         em.flush();
         return "success";
+    }
+
+    @PostMapping("/test1/{id}")
+    public ObjectNode test3(@PathVariable Integer id, @RequestBody PostDto postDto) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        Post post = postRepository.getOne(id);
+        post.setContent(postDto.getContent());
+        postRepository.save(post);
+        objectNode.put("status", "SUCCESS");
+        return objectNode;
     }
 }

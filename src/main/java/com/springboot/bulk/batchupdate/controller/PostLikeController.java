@@ -93,4 +93,16 @@ public class PostLikeController {
         return objectNode;
     }
 
+    @GetMapping("/test3/{likeCnt}")
+    public ObjectNode test3(@PathVariable Integer likeCnt) {
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        List<PostLike> postLikeList = postLikeRepository.findAll();
+        for(PostLike postLike : postLikeList) {
+            postLike.setLikeCnt(likeCnt);
+        }
+        postLikeRepository.saveAll(postLikeList);
+        objectNode.put("status", "success");
+        return objectNode;
+    }
+
 }

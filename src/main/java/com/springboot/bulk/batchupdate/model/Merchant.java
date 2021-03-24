@@ -9,14 +9,22 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @DynamicUpdate
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "post_like")
-public class PostLike extends BaseModel {
-    @Column(name = "like_cnt")
-    private Integer likeCnt;
+@Table(name = "merchant")
+public class Merchant extends BaseModel {
+    @Column(name = "name")
+    String name;
+
+    @Column(name = "batch_number")
+    Long batchNumber;
+
+    @Column(name = "next_settlement_date")
+    LocalDateTime nextSettlementDate;
 }
