@@ -28,5 +28,5 @@ public class SettlementBatch extends BaseModel {
     private BigDecimal totalAmount;
 
     @Column(name = "total_transaction")
-    private BigDecimal totalTransaction;
+    private Integer totalTransaction;
 }

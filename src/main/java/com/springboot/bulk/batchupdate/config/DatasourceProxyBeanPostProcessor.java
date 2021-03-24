@@ -14,22 +14,22 @@ import org.springframework.util.ReflectionUtils;
 @Component
 public class DatasourceProxyBeanPostProcessor implements BeanPostProcessor {
 
-    @Override
-    public Object postProcessBeforeInitialization(final Object bean, final String beanName) throws BeansException {
-        return bean;
-    }
-
-    @Override
-    public Object postProcessAfterInitialization(final Object bean, final String beanName) throws BeansException {
-        if (bean instanceof DataSource) {
-            ProxyFactory factory = new ProxyFactory(bean);
-            factory.setProxyTargetClass(true);
-            factory.addAdvice(new ProxyDataSourceInterceptor((DataSource) bean));
-            return factory.getProxy();
-        }
-
-        return bean;
-    }
+//    @Override
+//    public Object postProcessBeforeInitialization(final Object bean, final String beanName) throws BeansException {
+//        return bean;
+//    }
+//
+//    @Override
+//    public Object postProcessAfterInitialization(final Object bean, final String beanName) throws BeansException {
+//        if (bean instanceof DataSource) {
+//            ProxyFactory factory = new ProxyFactory(bean);
+//            factory.setProxyTargetClass(true);
+//            factory.addAdvice(new ProxyDataSourceInterceptor((DataSource) bean));
+//            return factory.getProxy();
+//        }
+//
+//        return bean;
+//    }
 
     private static class ProxyDataSourceInterceptor implements MethodInterceptor {
 

@@ -20,6 +20,10 @@ public class Transaction extends BaseModel {
     @JoinColumn(name = "settlement_batch_id")
     private SettlementBatch settlementBatch;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "merchant_id")
+    private Merchant merchant;
+
     @Column(name = "batch_number")
     Long batchNumber;
 
